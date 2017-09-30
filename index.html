@@ -18,14 +18,14 @@
 	<script>
     	     var zombie_map;
 	     var score = 0;
-	     var tolerance = 10;
+	     var tolerance = 7;
 	     var old_position;
 	     var all_markers = []
 	     var data = `-26.00617449476945 28.01037311553955 Zombie.png
 	     -26.00428454817611 28.00985813140869 Zombie.png
 	     -26.00567308333118 28.00835609436035 hospital.png
-	     -26.00657947922119 28.008828163146972 gun.png
-	     -26.00278028323342 28.01243305206299 gun.png
+	     -26.00657947922119 28.008828163146972 Weapons.png
+	     -26.00278028323342 28.01243305206299 Weapons.png
 	     -26.007794424564817 28.011016845703125 hospital.png`
 	     var markers = data.split("\n");
              function initMap() {
@@ -69,10 +69,33 @@
 				all_markers[i].setMap(null);
 
 
-				if( what_is_it !="zombie"){
-					score += 10;
+				if( what_is_it = "zombie"){
+					if(score > 9){	
+						alert("You killed the zombie");
+						alert("Your score is " + score);
+}
 
+					else {
+						alert("Your brains we're eaten by a zombie");
+						score -=10;
+						alert("Your score is " + score);
+}
+}
+				if( what_is_it = "hospital"){
+					score += 10;
+					alert("Try not to get your brains eaten again!");
 					alert("Your score is " + score);
+
+}
+
+				if( what_is_it = "Weapons"){
+					score += 10;
+					alert("Go defeat the zombies!");
+					alert("Your score is " + score);
+
+
+
+
 }
 }
 }
