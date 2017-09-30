@@ -1,0 +1,84 @@
+<html>
+  <head>
+  <style>
+    #zombie_map {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;  
+    background-color: grey;
+}
+</style>
+    <title>Zombie Game</title>
+  </head>
+  <body>
+	My zombie map
+	<div id="zombie_map"></div>
+	<script>
+    	     var zombie_map
+	     var all_markers = []
+	     var data = `-26.00617449476945 28.01037311553955 Zombie.png
+	     -26.00428454817611 28.00985813140869 Zombie.png
+	     -26.00567308333118 28.00835609436035 hospital.png
+	     -26.00657947922119 28.008828163146972 gun.png
+	     -26.00278028323342 28.01243305206299 gun.png
+	     -26.007794424564817 28.011016845703125 hospital.png`
+	     var markers = data.split("\n");
+             function initMap() {
+		
+            	zombie_map = new google.maps.Map(document.getElementById('zombie_map'), {
+            	zoom: 15,
+            	center: {lat:-26.012720, lng:28.004280}
+        });
+
+		
+
+		 if(navigator.geolocation) {
+    			navigator.geolocation.watchPosition(set_my_position);
+}
+		else {
+   			 alert("Geolocation doesn't work in your browser");
+}
+	     function set_my_position(position){
+		var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		var emoji = 'person.png';
+		var marker = new google.maps.Marker({
+  		position: pos,
+  		map: zombie_map,
+		icon: emoji
+		
+               
+
+
+	});
+	
+}
+
+	
+		for (var i = 0; i < markers.length; i++) {
+     			document.write(markers[i] + "<br>");
+			var marker_data = markers[i].trim();
+			marker_data = marker_data.split(" ");
+			var latitude = marker_data[0];
+			var longitude = marker_data[1];
+			var emoji = marker_data[2];
+			var marker_position = new google.maps.LatLng(latitude, longitude);
+			var marker = new google.maps.Marker({
+  			position: marker_position,
+  			map: zombie_map,
+			icon: emoji
+	});
+			
+			all_markers.push(marker);
+}
+}
+
+</script>
+
+	Items I want to appear on my page will go here
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVD2EySD19EB1X8SbJV0ylCr57ZhsJQJA&callback=initMap">
+  </script>
+  </body>
+</html>
