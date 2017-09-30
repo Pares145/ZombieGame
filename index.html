@@ -31,11 +31,14 @@
             	zombie_map = new google.maps.Map(document.getElementById('zombie_map'), {
             	zoom: 15,
             	center: {lat:-26.012720, lng:28.004280}
-        });
+});
 
-		
+		var old_position = new google.maps.Marker({
+ 			position: {lat:-26.012720, lng:28.004280},
+  			map: zombie_map,
+});	
 
-		 if(navigator.geolocation) {
+		if(navigator.geolocation) {
     			navigator.geolocation.watchPosition(set_my_position);
 }
 		else {
@@ -49,13 +52,11 @@
   		position: pos,
   		map: zombie_map,
 		icon: emoji
-	      
-               
-
 
 	});
-	
+
 		old_position = marker;
+	
 }
 
 	
